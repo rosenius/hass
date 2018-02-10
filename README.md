@@ -7,10 +7,17 @@ Detta är en lokal repo jag gjort för att säkra upp min Hass-installation samt
 Ip: 192.168.1.172
 Port: 8123 (lokalt) 443 (externt) 
 
+Konfig-mapp
+/home/jesper/hass/config
+
 ### Node-red
 
 Ip: 192.168.1.172
 Port: 1880
+
+Konfig-mapp
+/home/jesper/node-red
+
 
 ### Mqtt (mosquttio)
 
