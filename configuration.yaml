@@ -14,7 +14,7 @@ homeassistant:
   customize: !include customize.yaml
 
 # Show links to resources in log and frontend
-introduction:
+# introduction:
 
 # Enables the frontend
 frontend:
@@ -143,6 +143,10 @@ tts:
 cloud:
 
 mqtt:
+  broker: 192.168.1.172
+  port: 1884
+  username: hass
+  password: !secret mqtt_password
 
 group: !include groups.yaml
 automation: !include automations.yaml
