@@ -1,0 +1,150 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 57.4981
+  longitude: 14.1484
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Europe/Stockholm
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+introduction:
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  base_url: nesorha.duckdns.org
+  ssl_certificate: /etc/letsencrypt/live/nesorha.duckdns.org/fullchain.pem
+  ssl_key: /etc/letsencrypt/live/nesorha.duckdns.org/privkey.pem
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+  ignore:
+    - plex_mediaserver
+
+device_tracker:
+  - platform: asuswrt
+    host: 192.168.1.1
+    username: admin
+    password: bvx26vb49g
+    track_new_devices: false
+
+switch:
+  - platform: mqtt
+    name: "Bedroom Switch"
+    state_topic: "hass/test/switch1"
+    command_topic: "hass/test/switch1/set"
+    payload_on: "ON"
+    payload_off: "OFF"
+    optimistic: false
+    qos: 0
+    retain: true
+  - platform: mqtt
+    name: "Toalett_spegel"
+    command_topic: "cmnd/sonoff_toalett/power"    
+    state_topic: "stat/sonoff_toalett/POWER"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+    retain: true
+
+media_player:
+  - platform: braviatv
+    host: 192.168.1.207
+  - platform: yamaha
+    host: 192.168.1.95
+  - platform: spotify
+    client_id: !secret spotify_client_id
+    client_secret: !secret spotify_client_secret
+    
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor:
+  - platform: yr
+
+  - platform: template
+    sensors:
+      alarm_time:
+        friendly_name: 'Time'
+        value_template: '{{ "%0.02d:%0.02d" | format(states("input_number.alarmhour") | int, states("input_number.alarmminutes") | int) }}'
+
+notify:
+  - platform: joaoapps_join
+    device_id: !secret join_jesper_device_id
+    api_key: !secret join_api_key
+    name: Jesper
+  - platform: joaoapps_join
+    device_id: !secret join_shieldtv_device_id
+    name: ShieldTv
+    api_key: !secret join_api_key
+
+joaoapps_join:
+  - name: jesper
+    device_id: !secret join_jesper_device_id
+    api_key: !secret join_api_key
+  - name: shieldtv
+    device_id: join_shieldtv_device_id
+    api_key: !secret join_api_key
+
+apple_tv:
+  - host: 192.168.1.202
+    name: Tv Vardagsrummet
+    login_id: !secret appletv_vardagsrummet_login_id
+    credentials: !secret appletv_vardagsrummet_credentials
+    
+  
+  - host: 192.168.1.189
+    name: AppleTv Källaren
+    login_id: !secret appletv_kallaren_login_id
+    credentials: !secret appletv_kallaren_credentials
+
+# Text to speech
+tts:
+  - platform: google
+    language: sv
+
+# Cloud
+cloud:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+input_number: !include input_number.yaml
+input_boolean: !include input_boolean.yaml
+scene: !include scene.yaml

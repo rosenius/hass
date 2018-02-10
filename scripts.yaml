@@ -1,0 +1,41 @@
+mqtttest:
+  alias: mqtt-test
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "/hass/alarm"
+        payload: "run"
+
+somna_musik:
+  alias: Somna till musik
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "/hass/somna_musik"
+        payload: "run"
+
+restart_node_red:
+  alias: starta om Node-red
+  sequence:
+    - service: hassio.addon_start
+      data:
+        addon: 27e642c6_nodered
+
+black_out:
+  alias: Släck hela huset
+  sequence:
+    - service: scene.turn_on
+      entity_id: scene.black_out
+
+status_rapport:
+  alias: Skicka statusrapport
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "/hass/status_rapport"
+        payload: "run"
+
+auto_git:
+  alias: Uppdatera git
+  sequence:
+    service: shell_command.auto_git

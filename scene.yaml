@@ -1,0 +1,108 @@
+- name: black_out
+  entities:
+    # Hallen
+    light.hallen_taklampa_1: off
+    switch.hallen_taklampa_2: off
+    # Sovrummet
+    light.sovrummet_fonster: off
+    light.sovrummet_taklampa: off
+    light.sovrummet_jesper: off
+    light.sovrummet_lina: off
+    # Toalett
+    light.toatak1: off
+    light.toatak2: off
+    light.toatak3: off
+    # Koksbordet
+    light.koksbordet_taklampa: off
+    light.koksbordet_fonster: off
+    # Koket
+    light.koket_taklampa: off
+    switch.koket_diskbank: off
+    switch.koket_fonsterlampa: off
+    # Vardagsrummet
+    light.vardagsrummet_laslampa: off
+    light.vardagsrummet_fonster: off
+    # Ellen
+    light.ellen_taklampa: off
+    # Datorrummet
+    light.datorrummet_taklampa: off
+    # Tvrummet
+    light.lampa_11: off
+    light.lampa_12: off
+    light.lampa_13: off
+    light.lampa_21: off
+    light.lampa_22: off
+    light.lampa_23: off
+
+- name: morgon_jobb
+  entities:
+    # Hallen
+    light.hallen_taklampa_1:
+      state: on
+      transtition: 240
+     # Koksbordet
+    light.koksbordet_taklampa:
+      state: on
+      transition: 240
+    light.koksbordet_fonster: on
+    # Koket
+    light.koket_taklampa:
+      state: on
+      transition: 600
+    switch.koket_diskbank: on
+    # Vardagsrummet
+    light.vardagsrummet_laslampa: on
+    light.vardagsrummet_fonster: on
+    # Ellen
+    light.ellen_taklampa: on
+    # Datorrummet
+    light.datorrummet_taklampa:
+      state: on
+      transition: 600
+
+- name: Tv_mys
+  entities:
+    light.tv:
+      state: on
+      xy_color: [0.33, 0.66]
+      brightness: 200
+    light.lampa_11:
+      state: on
+      brightness: 1
+    light.lampa_12:
+      state: on
+      brightness: 1
+    light.lampa_13:
+      state: on
+      brightness: 1
+    light.lampa_21:
+      state: on
+      brightness: 1
+    light.lampa_22:
+      state: on
+      brightness: 1
+    light.lampa_23:
+      state: on
+      brightness: 1
+
+- name: Sovrum_av
+  entities:
+    light.sovrummet_fonster: off
+    light.sovrummet_taklampa: off
+    light.sovrummet_jesper: off
+    light.sovrummet_lina: off
+
+- name: Sovrum_på
+  entities:
+    light.sovrummet_fonster: on
+    light.sovrummet_taklampa: on
+    light.sovrummet_jesper: on
+    light.sovrummet_lina: on    
+
+- name: valkommen_hem
+  entities:
+    light.koksbordet_taklampa: on
+    light.koksbordet_fonster: on
+    light.vardagsrummet_fonster: on
+    light.vardagsrummet_laslampa: on
+    light.hallen_taklampa: on

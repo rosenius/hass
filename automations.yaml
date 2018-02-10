@@ -1,0 +1,79 @@
+- alias: "Wake me up with bedroom light transition for weekdays"
+  trigger:
+    - platform: time
+      minutes: '/1'
+      seconds: 0
+  condition:
+    - condition: state
+      entity_id: input_boolean.alarmweekday
+      state: 'on'
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    - condition: template
+      value_template: '{{ now().strftime("%H:%M") == states.sensor.alarm_time.state }}'
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "/hass/alarm"
+        payload: "run"
+      
+
+- alias: "Wake me up with bedroom light transition for weekend days"
+  trigger:
+    - platform: time
+      minutes: '/1'
+      seconds: 0
+  condition:
+    - condition: state
+      entity_id: input_boolean.alarmweekon
+      state: 'on'
+    - condition: time
+      weekday:
+        - sat
+        - sun
+    - condition: template
+      value_template: '{{ now().strftime("%H:%M") == states.sensor.alarm_time.state }}'
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "/hass/alarm"
+        payload: "run"
+
+- alias: Start node red at reboot
+  trigger:
+    platform: homeassistant
+    # Event can also be 'shutdown'
+    event: start        
+  action:
+    - delay:
+        seconds: 120
+    - service: hassio.addon_start
+      data:
+        addon: 27e642c6_nodered
+
+- alias: 'Tända lampor'
+  trigger:
+    platform: time
+    seconds: 15
+#  condition:
+#    condition: state
+#    entity_id: group.family
+#    state: 'home'
+  action:
+    service: python_script.light_counter
+
+- alias: 'Personer hemma'
+  trigger:
+    platform: time
+    seconds: 15
+#  condition:
+#    condition: state
+#    entity_id: group.family
+#    state: 'home'
+  action:
+    service: python_script.devcie_counter

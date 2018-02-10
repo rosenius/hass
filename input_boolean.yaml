@@ -1,0 +1,5 @@
+alarmweekday:
+  name: Vardag
+  icon: mdi:calendar
+alarmweekon:
+  name: Helg    

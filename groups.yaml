@@ -1,0 +1,168 @@
+#
+# Flikar
+#
+
+default_view:
+  view: yes
+  icon: mdi:home 
+  entities:
+    - group.klimat
+    - group.rum
+    - group.larm
+
+belysning:
+  view: yes
+  entities:
+    - group.hallen
+    - group.sovrummet    
+    - group.toalett
+    - group.koksbordet    
+    - group.koket
+    - group.vardagsrummet
+    - group.datorrummet    
+    - group.tvrummet
+    - group.tvattstugan
+    - group.stakar
+
+media:
+  view: yes
+  entities:
+    - group.cca
+
+info:
+  view: yes
+  entities:
+    - group.debug    
+
+#
+# Grupper
+#
+
+klimat:
+  name: Klimat
+  entities:
+    - sensor.ute_temperature
+    - sensor.koket_temperature
+    - sensor.koket_humidity
+    - sensor.uterummet_temperature
+    - sensor.uterummet_humidity
+    - sensor.kallaren_temperature
+    - sensor.kallaren_humidity
+
+
+rum:
+  name: Rum
+  entities:
+    - group.hallen
+    - group.sovrummet    
+    - group.toalett
+    - group.koksbordet    
+    - group.koket
+    - group.vardagsrummet
+    - group.datorrummet    
+    - group.tvrummet
+    - group.tvattstugan
+    - group.stakar
+
+sovrummet:
+  name: Sovrummet
+  entities:
+    - light.sovrummet_taklampa
+    - light.sovrummet_jesper
+    - light.sovrummet_lina
+    - light.sovrummet_fonster
+
+hallen:
+  name: Hallen
+  entities:
+    - light.hallen_taklampa_1
+    - switch.hallen_taklampa_2
+
+toalett:
+  name: Toalett
+  entities:
+    - light.toatak1
+    - light.toatak2
+    - light.toatak3
+
+koksbordet:
+  name: Köksbordet
+  entities:
+    - light.koksbordet_taklampa
+    - light.koksbordet_fonster
+
+koket:
+  name: "Köket"
+  entities:
+    - light.koket_taklampa
+    - switch.koket_diskbank
+    - switch.koket_fonsterlampa
+
+vardagsrummet:
+  name: Vardagsrummet
+  entities:
+    - light.vardagsrummet_laslampa
+    - light.vardagsrummet_fonster
+
+tvrummet:
+  name: Tvrrummet
+  entities:
+    - light.lampa_11
+    - light.lampa_12
+    - light.lampa_13
+    - light.lampa_21
+    - light.lampa_22
+    - light.lampa_23
+    - light.tv
+
+tvattstugan:
+  name: Tvättstugan
+  entities:
+    - light.tvattstugan
+
+datorrummet:
+  name: Datorrummet
+  entities:
+    - light.datorrummet_taklampa
+
+stakar:
+  name: Ljusstakar
+  entities:
+    - switch.koket_fonsterlampa
+    - switch.koksbordet_stake
+    - switch.vardagsrummet_stake
+
+cca:
+  name: Chromecast Audio
+  entities:
+    - media_player.vardagsrummet
+    - media_player.barbar
+    - media_player.rxa830_a65dec
+
+larm:
+  name: Wake Me Up
+  entities: 
+    - input_boolean.freebox
+    - sensor.alarm_time
+    - input_number.alarmhour
+    - input_number.alarmminutes
+    - input_boolean.alarmweekday
+    - input_boolean.alarmweekon
+    - script.mqtttest
+
+debug:
+  name: debug
+  entities:
+    - light.tv
+    - script.restart_node_red
+    - automation.start_node_red_at_reboot
+    - switch.bedroom_switch
+    - media_player.tv_vardagsrummet
+    - media_player.apple_tv
+    - media_player.shield
+    - media_player.sony_bravia_tv
+    - media_player.yamaha_receiver
+    - device_tracker.jesper
+    - device_tracker.lina
+    - media_player.spotify
+    - switch.toalett_spegel
