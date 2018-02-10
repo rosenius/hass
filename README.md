@@ -4,16 +4,20 @@ Detta är en lokal repo jag gjort för att säkra upp min Hass-installation samt
 
 ### Home Assistant
 
-Placeholder, bla, bla och bla.
+Ip: 192.168.1.172
+Port: 8123 (lokalt) 443 (externt) 
 
 ### Node-red
 
-Placeholder, bla, bla och bla.
+Ip: 192.168.1.172
+Port: 1880
 
 ### Mqtt (mosquttio)
 
-Placeholder, bla, bla och bla.
+Ip: 192.168.1.172
+Port: 1884
 
 ### Portainer
 
-Körs på vm-ip:9000 (för stunden [192.168.1.172:9000](http://))
+Ip: 192.168.1.172
+Port: 9000
