@@ -27,8 +27,8 @@ http:
   api_password: !secret http_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   base_url: nesorha.duckdns.org
-  ssl_certificate: /ssl/fullchain.pem
-  ssl_key: /ssl/privkey.pem
+  ssl_certificate: /config/dehydrated/certs/nesorha.duckdns.org/fullchain.pem
+  ssl_key: /config/dehydrated/certs/nesorha.duckdns.org/privkey.pem
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -141,6 +141,8 @@ tts:
 
 # Cloud
 cloud:
+
+mqtt:
 
 group: !include groups.yaml
 automation: !include automations.yaml
