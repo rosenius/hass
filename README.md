@@ -17,6 +17,14 @@ Port: 1880
 Ip: 192.168.1.172
 Port: 1884
 
+Lokala data (på virtuella maskinen)
+/var/lib/docker/volumes/mosquitto_config/_data
+
+Plats för passwd (docker)
+/etc/mosquitto/passwd
+(kommando för ny användare mosquitto_passwd -c /etc/mosquitto/passwd (användarnamn)
+
+
 ### Portainer
 
 Ip: 192.168.1.172
